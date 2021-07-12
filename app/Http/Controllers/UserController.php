@@ -11,14 +11,17 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     private $userClass;
-    private $userRepository;
     private $userService;
+    private $userRepository;
+    private $smsGate;
 
-    public function __construct()
+    public function __construct(SmsGateInterface $smsGate)
     {
+        $this->smsGate = $smsGate;
+
         $this->userClass = User::class;
-        $this->userRepository = new UserRepository();
         $this->userService = new UserService();
+        $this->userRepository = new UserRepository();
     }
 
     /**
@@ -34,6 +37,9 @@ class UserController extends Controller
 
         //get_users
         $users = $this->userRepository->getAll($users);
+
+        $smsGate->send('0696969', 'bbh3wbh3b');
+
         return response()->json($users);
     }
 
