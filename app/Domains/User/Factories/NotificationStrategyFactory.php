@@ -19,4 +19,9 @@ class NotificationStrategyFactory
                 return new EmailNotificationStrategy();
         }
     }
+
+    public function get()
+    {
+
+    }
 }

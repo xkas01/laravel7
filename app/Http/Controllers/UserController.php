@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Domains\User\Entities\UserProfile;
 use Mehnat\User\Entities\User;
 use Mehnat\User\Repository\UserRepository;
 use Mehnat\User\Services\UserService;
@@ -43,7 +44,12 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $user = $this->userRepository->cerate($request);
+        $profile = $this->userProfileRepository->cerate($user);
+
+        /*$profile = UserProfile::create([
+            'user_id' => $user->id
+        ]);*/
     }
 
     /**

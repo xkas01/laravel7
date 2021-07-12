@@ -3,10 +3,11 @@
 namespace Mehnat\User\Services;
 
 use App\Domains\User\Factories\NotificationStrategyFactory;
+use Illuminate\Database\Eloquent\Builder;
 
 class UserService
 {
-    public function filter($query)
+    public function filter(Builder $query): Builder
     {
         $user_name = request()->get('user_name', false);
         if ($user_name) {
